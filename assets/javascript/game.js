@@ -18,22 +18,58 @@ $(document).ready(function() {
         //Get player name
         $("#start").on("click", function() { 
             var name = $("#name").val();
-            console.log(name)
+            console.log(name);
         })
         $("#player1 button").on("click", function() {
             player1choice = $(this).text();
-            console.log(player1choice)
-            if (player1choice == 'Rock' && player2choice =='Scissors') {
-                player1Wins++;
-                console.log("geg")
-            }
+            console.log(player1choice);
+            check();
         })
         $("#player2 button").on("click", function() {
             player2choice = $(this).text();
-            console.log(player2choice)
+            console.log(player2choice);
+            check();
            
         })
         
+        //Check player choices and assign winner/loser
+        function check() {
+            if (player1choice == 'Rock' && player2choice =='Scissors') {
+                player1Wins++;
+                player2Losses++;
+                console.log("first")
+            }
+            else if (player1choice == 'Rock' && player2choice == 'Paper'){
+            player1Losses++;
+            player2Wins++;
+            console.log("second")
+            }
+            else if (player1choice == 'Scissors' && player2choice == 'Rock'){
+            player1Losses++;
+            player2Wins++;
+            console.log("third")
+            }
+            else if (player1choice == 'Scissors' && player2choice == 'Paper'){
+            player1Wins++;
+            player2Losses++;
+            console.log("fourth")
+            }
+            else if (player1choice == 'Paper' && player2choice == 'Rock'){
+            player1Wins++;
+            player2Losses++;
+            console.log("fifth")
+            }
+            else if (player1choice == 'Paper' && player2choice == 'Scissors'){
+            player1Losses++;
+            player2Wins++;
+            console.log("sixth")
+            }
+            else if (player1choice == player2choice){
+            ties++;
+            }  
+        
+        //check function closer
+        }
 
         firebase.set({
             player1: name,
@@ -45,25 +81,6 @@ $(document).ready(function() {
             player2Wins: player2Wins,
             player2Losses: player2Losses
         })
-        // if ((player1choice == 'r') || (userGuess == 'p') || (userGuess == 's')){
-        // // It tests to determine if the computer or the user won the round and then increments 
-        // if ((userGuess == 'r') && (computerGuess == 's')){
-        // wins++;
-        // }else if ((userGuess == 'r') && (computerGuess == 'p')){
-        // losses++;
-        // }else if ((userGuess == 's') && (computerGuess == 'r')){
-        // losses++;
-        // }else if ((userGuess == 's') && (computerGuess == 'p')){
-        // wins++;
-        // }else if ((userGuess == 'p') && (computerGuess == 'r')){
-        // wins++;
-        // }else if ((userGuess == 'p') && (computerGuess == 's')){
-        // losses++;
-        // }else if (userGuess == computerGuess){
-        // ties++;
-        // }  
-        
-        
-
+      
 //document ready function closer
 });
