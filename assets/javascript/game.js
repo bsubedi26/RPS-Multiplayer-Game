@@ -38,39 +38,47 @@ $(document).ready(function() {
                 player1Wins++;
                 player2Losses++;
                 console.log("first")
+                firebaseSet();
             }
             else if (player1choice == 'Rock' && player2choice == 'Paper'){
             player1Losses++;
             player2Wins++;
             console.log("second")
+            firebaseSet();
             }
             else if (player1choice == 'Scissors' && player2choice == 'Rock'){
             player1Losses++;
             player2Wins++;
             console.log("third")
+            firebaseSet();
             }
             else if (player1choice == 'Scissors' && player2choice == 'Paper'){
             player1Wins++;
             player2Losses++;
             console.log("fourth")
+            firebaseSet();
             }
             else if (player1choice == 'Paper' && player2choice == 'Rock'){
             player1Wins++;
             player2Losses++;
             console.log("fifth")
+            firebaseSet();
             }
             else if (player1choice == 'Paper' && player2choice == 'Scissors'){
             player1Losses++;
             player2Wins++;
             console.log("sixth")
+            firebaseSet();
             }
             else if (player1choice == player2choice){
             ties++;
+            firebaseSet();
             }  
         
         //check function closer
         }
 
+        function firebaseSet() {
         firebase.set({
             player1: name,
             // player1choice: player1choice,
@@ -79,8 +87,13 @@ $(document).ready(function() {
             // player2choice: player2choice,
             player2: name,
             player2Wins: player2Wins,
-            player2Losses: player2Losses
+            player2Losses: player2Losses,
+            ties: ties
         })
+
+        //Firebase function closer
+    }
+        
       
 //document ready function closer
 });
